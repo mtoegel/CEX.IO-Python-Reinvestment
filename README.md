@@ -24,7 +24,7 @@ If you want to run it via a cron you can remove the "while True:" line and remov
 
 * If the account has < 5 GHS it buys what it can according to the rules provided.
 * If the account has >= 5 GHS it'll try to purchase a whole number GHS, the minimum being 1 GHS.
-* It also tries to make sure that a transaction won't leave you with less than .00001 BTC.
+* It also tries to make sure that a transaction won't leave you with less than .00011 BTC.
 * It has a built in 30 second delay between switching accounts.
 * Currently this version invests for the Future Hashrate for May or FMH/BTC until May 26th when it's over. I'll update this around that time to remove the unnecessary code or update it to another future buy possibly. After that day the currency set will be 'GHS/BTC'. If you don't want this you can remove the if statement checking the date and the currency change under the reinvest function. In the future I plan to give an option.
 
