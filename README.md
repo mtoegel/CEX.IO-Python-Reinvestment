@@ -15,6 +15,7 @@ Then it'll ask you to choose an reinvestment method, basic selections so far:
 "average" - It will only purchase GHS if the last trade is lower than the "today's" average.
 "percent" - It will only purchase GHS if the last trade is within x% of the lowest trade for "today".
 "any" - It will purchase GHS at the last trade value.
+
 Then it will ask you to input a delay between interations or cycles of accounts. The default is 180 minutes and minumum is 1 minute.
 It also attempts to limit the API calls to keep it below the threshold of 600/10 minutes so your IP doesn't get banned.
 
@@ -29,6 +30,7 @@ It has a built in 30 second delay between switching accounts.
 Currently this version invests for the Future Hashrate for May or FMH/BTC until May 26th when it's over. I'll update this around that time to remove the
 unnecessary code or update it to another future buy possibly. After that day the currency set will be 'GHS/BTC'. If you don't want this you can remove the
 if statement checking the date and the currency change under the reinvest function. In the future I plan to give an option.
+
 To-DO:
 -Optimize and cleanup the structure and code
 -Add other error checks, prevent errors from breaking code loop
