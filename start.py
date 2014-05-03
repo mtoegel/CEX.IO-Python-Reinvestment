@@ -257,7 +257,7 @@ while True:
         for user in config.getUsers():
             print(Fore.BLUE + user.getAttr("name"))
             reinvest(user.getAttr("username"), user.getAttr("key"), user.getAttr("secret"))
-                if num > 1:
+            if num > 1:
                 time.sleep(30)#delay multiple user accounts, help lower API call rate
             print("End of reinvest for " + user.getAttr("name"))
         print("End of user interation, sleeping for " + str(delay) + " minutes.")
