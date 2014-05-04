@@ -36,6 +36,7 @@ If you want to run it via a cron you can remove the "while True:" line and remov
 * Make sure there aren't any resource leaks
 * Other reinvestment methods
 * Provide currency choice
+* Add reinvestment for LTC and NMC either to BTC or GHS if applicable with separate strategies
 
 Since I'm using this project too, I'll update this repo as I make changes to my version.
 This project is provided AS-IS.
