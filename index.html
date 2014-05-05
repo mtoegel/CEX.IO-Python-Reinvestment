@@ -37,7 +37,8 @@
 <p>Little project I decided to work on for the Raspberry Pi</p>
 
 <p>Got slightly introduced to Python in a class, like a 1 day intro, so I decided
-to try to work on a reinvestment program for my Raspberry Pi to get into Python a bit.</p>
+to try to work on a reinvestment program for my Raspberry Pi to get into Python a bit.
+This also runs on windows (how I'm currently running it) and anything else that runs Python 3.3.2.</p>
 
 <p>The Cex.io API was slightly modified to work for Python 3.3.2 since the one from their git threw errors for me.
 The start.py script is the main program. It uses colorama for text coloring in the command line.</p>
@@ -62,7 +63,7 @@ If you want to run it via a cron you can remove the "while True:" line and remov
 <ul>
 <li>If the account has &lt; 5 GHS it buys what it can according to the rules provided.</li>
 <li>If the account has &gt;= 5 GHS it'll try to purchase a whole number GHS, the minimum being 1 GHS.</li>
-<li>It also tries to make sure that a transaction won't leave you with less than .00001 BTC.</li>
+<li>It also tries to make sure that a transaction won't leave you with less than .00011 BTC.</li>
 <li>It has a built in 30 second delay between switching accounts.</li>
 <li>Currently this version invests for the Future Hashrate for May or FMH/BTC until May 26th when it's over. I'll update this around that time to remove the unnecessary code or update it to another future buy possibly. After that day the currency set will be 'GHS/BTC'. If you don't want this you can remove the if statement checking the date and the currency change under the reinvest function. In the future I plan to give an option.</li>
 </ul><p><strong>To-DO:</strong></p>
@@ -75,10 +76,17 @@ If you want to run it via a cron you can remove the "while True:" line and remov
 <li>Make sure there aren't any resource leaks</li>
 <li>Other reinvestment methods</li>
 <li>Provide currency choice</li>
+<li>Add reinvestment for LTC and NMC either to BTC or GHS if applicable with separate strategies</li>
 </ul><p>Since I'm using this project too, I'll update this repo as I make changes to my version.
 This project is provided AS-IS.</p>
 
 <p>If you'd like to support this project you may send BTC to 17jVTWiYSUMjBKN2FYkzjtGHohgLKQi4xs.</p>
+
+<p><strong>Get started</strong>
+If you don't have an account with CEX.io or a place to purchase BTC you can follow these steps to get started using this software.
+1. Create an account at <a href="https://cex.io/r/0/UberKaNoober/0/">cex.io</a>
+2. Register with <a href="https://coinbase.com/?r=52ffb9c2ddc4e74ba40000de&amp;utm_campaign=user-referral&amp;src=referral-link">coindbase.com</a> so you can purchase your initial BTC and trade for your first GHS at cex.io. It's recommended to have at least 1 GHS.
+3. Once you have your initial GHS running at cex.io you can run this program and it'll reinvest your rewards turning them into more GHS.</p>
       </section>
     </div>
 
