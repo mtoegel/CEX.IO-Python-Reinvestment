@@ -66,6 +66,6 @@ If you'd like to support this project you may send BTC to 17jVTWiYSUMjBKN2FYkzjt
  - You'll need to purchase an initial deposite of BTC to get started, 1 GHS worth is the recommended minimum. You can easily purchase BTC at [coinbase.com](https://www.coinbase.com/?r=52ffb9c2ddc4e74ba40000de&utm_campaign=user-referral&src=referral-link).  
 	 - If you join through the above link and buy or sell $100 worth of BTC, you'll get $5 worth of BTC free.
  - Once you purchase your initial deposit you can send it to your BTC address on cex.io. (It'll take a little while to confirm)  
- - When it is confirmed you either may trade for your initial GHS or start the program which should make the first reinvestment.  
- - Afterwards, your GHS should mine BTC which the program will then reinvest automatically. (BTC generation varies based on your GHS)  
+ - When it is confirmed you either may trade for your initial GHS or start the program which should make the first investment.  
+ - Afterwards, your GHS should mine BTC, which the program will then reinvest automatically. (BTC generation varies based on your GHS)  
  
