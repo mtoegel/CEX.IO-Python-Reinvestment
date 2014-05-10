@@ -41,19 +41,19 @@ If you want to run it via a cron you can remove the "while True:" line and remov
     * "percent" - It will only purchase GHS if the last trade is within x% of the lowest trade for "today".  
     * "any" - It will purchase GHS at the last trade value.  
 6. Finally, it will ask you to input a delay between interations or cycles of accounts. The default is 180 minutes and minumum is 1 minute.  
-* The limits and basic functionality from the old version are still relevant so it's worth reading through the old instructions.  
-* However, the FHM/BTC is just an option of labeling the currency in step 3 to FHM, but it doesn't do the date checking yet like it does in the old version.  
+	* The limits and basic functionality from the old version are still relevant so it's worth reading through the old instructions.  
+	* However, the FHM/BTC is just an option of labeling the currency in step 3 to FHM, but it doesn't do the date checking yet like it does in the old version.  
   
 ## **To-DO:**  
-* [ ]Optimize and cleanup the structure and code  
-* [ ] Add other error checks, prevent errors from breaking code loop  
-* [ ] Test it on Raspberry Pi  
-* [ ] Add email feature?  
-* [ ] Make sure there aren't any resource leaks  
-* [x] Other reinvestment methods (added in new version)  
-* [x] Provide currency choice (added in new version)  
-* [x] Add reinvestment for LTC and NMC either to BTC or GHS if applicable with separate strategies (added in new version)  
-* [ ] Implement better handling of the temporary currencies (i.e., FHM or FHJ if they continue this)  
+ [ ]Optimize and cleanup the structure and code  
+ [ ] Add other error checks, prevent errors from breaking code loop  
+ [ ] Test it on Raspberry Pi  
+ [ ] Add email feature?  
+ [ ] Make sure there aren't any resource leaks  
+ [x] Other reinvestment methods (added in new version)  
+ [x] Provide currency choice (added in new version)  
+ [x] Add reinvestment for LTC and NMC either to BTC or GHS if applicable with separate strategies (added in new version)  
+ [ ] Implement better handling of the temporary currencies (i.e., FHM or FHJ if they continue this)  
   
 Since I'm using this project too, I'll update this repo as I make changes to my version.  
 This project is provided AS-IS.  
