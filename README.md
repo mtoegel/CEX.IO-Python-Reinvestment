@@ -36,6 +36,7 @@ If you want to run it via a cron you can remove the "while True:" line and remov
 2. It'll ask you to add accounts by providing a display name (for the console), cexio username, api key, and api secret.  
 3. Next it'll ask you which currency you'd like to reinvest into. Default is GHS and has only been tested with GHS and the temp currency of FHM) Though other possible options should be LTC, NMC, or BTC.  
 4. Then it'll go through a list of other currencies and ask if you'd like to try to invest them into the chosen currency above.  
+	* BTC should be enable as this is the main curreny used for reinvestment, although I provide the option not to use it.
 5. For each selected currency it'll ask you for a reinvestment method:  
 	* "average" - It will only purchase GHS if the last trade is lower than the "today's" average.  
     * "percent" - It will only purchase GHS if the last trade is within x% of the lowest trade for "today".  
@@ -59,3 +60,11 @@ Since I'm using this project too, I'll update this repo as I make changes to my 
 This project is provided AS-IS.  
   
 If you'd like to support this project you may send BTC to 17jVTWiYSUMjBKN2FYkzjtGHohgLKQi4xs.
+
+## Getting Started  
+ - If you don't have a cex.io account you can get one here: [cex.io](https://cex.io/r/2/UberKaNoober/0/)  
+ - You'll need to purchase an initial deposite of BTC to get started, 1 GHS worth is the recommended minimum. You can easily purchase BTC at [coinbase.com](https://coinbase.com/?r=52ffb9c2ddc4e74ba40000de&utm_campaign=user-referral&src=referral-link)  
+ - Once you purchase your initial deposit you can send it to your BTC address on cex.io. (It'll take a little while to confirm)  
+ - When it is confirmed you either may trade for your initial GHS or start the program which should make the first reinvestment.  
+ - Afterwards, your GHS should mine BTC which the program will then reinvest automatically. (BTC generation varies based on your GHS)  
+ 
