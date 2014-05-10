@@ -11,7 +11,7 @@ The start.py script is the main program. It uses colorama for text coloring in t
 <br/>
 *I'm working on a second version of this project, but I still have the old one included.<br/>
 <br/>
-##Instructions for the old version (start_old_method.py):<br/>
+## Instructions for the old version (start_old_method.py):<br/>
 1. On the first run it will ask you to setup a config file in which you can add multiple Cex.io accounts.<br/>
 2. You'll need a display name for the command line output, the username for the account (api), the api key, and api secret.<br/>
 3. Then it'll ask you to choose an reinvestment method, basic selections so far:<br/>
@@ -31,7 +31,7 @@ If you want to run it via a cron you can remove the "while True:" line and remov
 * It has a built in 30 second delay between switching accounts.<br/>
 * Currently this version invests for the Future Hashrate for May or FMH/BTC until May 26th when it's over. I'll update this around that time to remove the unnecessary code or update it to another future buy possibly. After that day the currency set will be 'GHS/BTC'. If you don't want this you can remove the if statement checking the date and the currency change under the reinvest function. In the future I plan to give an option.<br/>
 <br/>
-##Instructions for new version (start.py):<br/>
+## Instructions for new version (start.py):<br/>
 1. On the first run it'll ask you to setup a config file (the format is different from the old version).<br/>
 2. It'll ask you to add accounts by providing a display name (for the console), cexio username, api key, and api secret.<br/>
 3. Next it'll ask you which currency you'd like to reinvest into. Default is GHS and has only been tested with GHS and the temp currency of FHM) Though other possible options should be LTC, NMC, or BTC.<br/>
@@ -44,7 +44,7 @@ If you want to run it via a cron you can remove the "while True:" line and remov
 * The limits and basic functionality from the old version are still relevant so it's worth reading through the old instructions.<br/>
 * However, the FHM/BTC is just an option of labeling the currency in step 3 to FHM, but it doesn't do the date checking yet like it does in the old version.<br/>
 <br/>
-##**To-DO:**<br/>
+## **To-DO:**<br/>
 * [ ]Optimize and cleanup the structure and code<br/>
 * [ ] Add other error checks, prevent errors from breaking code loop<br/>
 * [ ] Test it on Raspberry Pi<br/>
