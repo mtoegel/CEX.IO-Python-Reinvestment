@@ -276,12 +276,14 @@ def reinvest(name, key, secret, currency, investments):
             last = ticker['last']
             last = round(Decimal(last),6)
             print("    Last Trade: " + str(last))
-            print("Checking reinvestment criteria for '" + method + "')
+            print("Checking reinvestment criteria for '" + method + "'")
+            success = False
             if method == "average":
                 average = round((Decimal(ticker["high"])+Decimal(ticker["low"]))/2,6)
                 print("    Today's Average: " + str(average))
                 if last <= average:
-                    attemptOrder(api,couple, last)
+                    success = True
+                    #attemptOrder(api,couple, last)
                 else:
                     print(Fore.RED + "Last trade isn't below average.")
             elif method == "percent":
@@ -291,32 +293,49 @@ def reinvest(name, key, secret, currency, investments):
                 low += low*percent
                 print("    Max purhcase threshold (" + str(percent*100)+"%): " + str(low))
                 if last <= low:
-                    attemptOrder(api,couple,last)
+                    success = True
+                    #attemptOrder(api,couple,last)
                 else:
                     print("Last trade is not within " + str(percent*100) + "% of today's low")
             elif method == "any":
-                attemptOrder(api,couple,last)
+                success = True
+                #attemptOrder(api,couple,last)
             else:
+                success = False
                 print(Fore.RED+"Invalid mode: " + mode + " please check config file.")
+            if success == True:
+                cs = couple.split("/")
+                if( cs[0] != currency):
+                    orderType = 'sell'
+                else:
+                    orderType = 'buy'
+                attemptOrder(api,couple,orderType,last)
 ## End reinvest loop and sleep
 
 ## Attempt to place order through API, called during reinvest loop
-def attemptOrder(api,couple, last):
+def attemptOrder(api,couple,orderType,last):
     balance = callAPI(api.balance())
     cs = couple.split("/")
-    available = round(Decimal(balance[cs[1]]["available"]),6)
     threshold = .0001
+    if orderType == 'sell':
+        switch = [1,0]
+    elif orderType == 'buy':
+        switch = [0,1]
+    available = round(Decimal(balance[cs[switch[1]]]["available"]),6)
     if cs[0] != "GHS":
-        print("Available "+cs[1]+" Balance: " + str(available))
+        print("Available "+cs[switch[1]]+" Balance: " + str(available))
         mod = Decimal(threshold) + Decimal(.00001)
-        order = round(Decimal((available-mod)/last),4)
+        if orderType == 'buy':
+            order = round(Decimal((available-mod)/last),4)
+        elif orderType == 'sell':
+            order = round(Decimal((available-mod) * last),4)
         if order > 0.0001:
-            wasSuccess = callAPI(api.place_order('buy', order, last, couple))
-            print("Order of " + str(order) + " " + cs[0] +" at " + str(last) + " " + couple + " Total: " + str(order*last) +" Success: " + str(wasSuccess))
+            wasSuccess = callAPI(api.place_order(orderType, order, last, couple))
+            print("Order of " + str(order) + " " + cs[switch[0]] +" at " + str(last) + " " + couple + " Total: " + str(order*last) +" Success: " + str(wasSuccess))
         else:
             print("No order placed, can't trade less than threshold ("+str(threshold)+").")
     elif cs[0] == "GHS" or cs[0] == "FHM":
-        myGH = round(Decimal(balance[cs[0]]["available"]),6)
+        myGH = round(Decimal(balance[cs[switch[0]]]["available"]),6)
         print("Available BTC Balance: " + str(available))
         print("Available GH/S: " + str(myGH))
         mod = Decimal(threshold) + Decimal(.00001)
@@ -325,7 +344,7 @@ def attemptOrder(api,couple, last):
             print("Possible purchase " + str(gh) + " ghs")
             print("My GHS: " + str(myGH) + " <= 5")
             if gh > 0.0001:
-                wasSuccess = callAPI(api.place_order('buy', gh, last, currency))
+                wasSuccess = callAPI(api.place_order(orderType, gh, last, currency))
                 print("Order of " + str(gh) + " GH/s at " + str(last) + " GH/BTC Total: " + str(gh*last) +" Success: " + str(wasSuccess))
             else:
                 print("No order placed, can't purchase GH/s less than threshold ("+str(threshold)+").")
