@@ -368,7 +368,7 @@ while True:
     num = len(config.getUsers())
     if num > 0:
         for user in config.getUsers():
-            print(Fore.BLUE + user.getAttr("name"))
+            print(Fore.CYAN + user.getAttr("name"))
             reinvest(user.getAttr("username"), user.getAttr("key"), user.getAttr("secret"), config.getCurrency(), config.getInvestments())
             if num > 1:
                 time.sleep(30)#delay multiple user accounts, help lower API call rate
