@@ -54,7 +54,8 @@ If you want to run it via a cron you can remove the "while True:" line and remov
  - [x] Other reinvestment methods (added in new version)  
  - [x] Provide currency choice (added in new version)  
  - [x] Add reinvestment for LTC and NMC either to BTC or GHS if applicable with separate strategies (added in new version)  
- - [ ] Implement better handling of the temporary currencies (i.e., FHM or FHJ if they continue this)  
+ - [ ] Implement better handling of the temporary currencies (i.e., FHM or FHJ if they continue this)
+ - [ ] Verify all trades (buy and sell) work as intended (so far GHS and FHM seem to be ok)  
   
 Since I'm using this project too, I'll update this repo as I make changes to my version.  
 This project is provided AS-IS.  
