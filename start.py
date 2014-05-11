@@ -244,7 +244,6 @@ def reinvest(name, key, secret, currency, investments):
         method = plan.getAttr("method")
         threshold = plan.getAttr("threshold")
         enabled = plan.getAttr("enabled")
-        print("Data: " + pc + "|"+method+"|"+str(threshold)+"|"+str(enabled))
         color = Back.RED if enabled == False else Back.GREEN
         print(Fore.WHITE +color+ "Currency: " + pc + " Investment Method: " + method + " Threshold: " + str(threshold) + " Enabled: " + str(enabled))
         if enabled == True:#["LTC", "NMC", "BTC", "GHS"]
