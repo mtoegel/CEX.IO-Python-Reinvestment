@@ -51,7 +51,7 @@ If you want to run it via a cron you can remove the "while True:" line and remov
  - [ ] Test it on Raspberry Pi  
  - [ ] Add email feature?  
  - [ ] Make sure there aren't any resource leaks  
- - [x] Other reinvestment methods (added in new version)  
+ - [ ] Other reinvestment methods  
  - [x] Provide currency choice (added in new version)  
  - [x] Add reinvestment for LTC and NMC either to BTC or GHS if applicable with separate strategies (added in new version)  
  - [ ] Implement better handling of the temporary currencies (i.e., FHM or FHJ if they continue this)
