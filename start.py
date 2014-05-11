@@ -7,6 +7,7 @@ import colorama
 from decimal import Decimal
 from colorama import Fore
 from colorama import init
+from colorama import Back
 import os
 init(autoreset=True)
 delay = 180 #minutes
@@ -31,7 +32,7 @@ def RateLimited(maxPerSecond):
 @RateLimited(5) #5/sec true max is 10/sec (600/10 mins) before IP ban
 def callAPI(call):
     now = datetime.datetime.now()
-    print(Fore.GREEN + "API Call at " + str(time.time())+ ": " + str(now))
+    print(Fore.MAGENTA+ "API Call at " + str(time.time())+ ": " + str(now))
     return call
 ## End Limit API
 
@@ -244,6 +245,8 @@ def reinvest(name, key, secret, currency, investments):
         threshold = plan.getAttr("threshold")
         enabled = plan.getAttr("enabled")
         print("Data: " + pc + "|"+method+"|"+str(threshold)+"|"+str(enabled))
+        color = Back.RED if enabled == False else Back.GREEN
+        print(Fore.WHITE +color+ "Currency: " + pc + " Investment Method: " + method + " Threshold: " + str(threshold) + " Enabled: " + str(enabled))
         if enabled == True:#["LTC", "NMC", "BTC", "GHS"]
             couple = ""
             if pc == "LTC" and not currency == "BTC":
@@ -331,12 +334,12 @@ def attemptOrder(api,couple,orderType,last):
             order = round(Decimal((available-mod) * last),4)
         if order > 0.0001:
             wasSuccess = callAPI(api.place_order(orderType, order, last, couple))
-            print("Order of " + str(order) + " " + cs[switch[0]] +" at " + str(last) + " " + couple + " Total: " + str(order*last) +" Success: " + str(wasSuccess))
+            print(Fore.GREEN+"Order of " + str(order) + " " + cs[switch[0]] +" at " + str(last) + " " + couple + " Total: " + str(order*last) +" Success: " + str(wasSuccess))
         else:
-            print("No order placed, can't trade less than threshold ("+str(threshold)+").")
+            print(Fore.RED+"No order placed, can't trade less than threshold ("+str(threshold)+").")
     elif cs[0] == "GHS" or cs[0] == "FHM":
         myGH = round(Decimal(balance[cs[switch[0]]]["available"]),6)
-        print("Available BTC Balance: " + str(available))
+        print("Available "+cs[switch[1]]+" Balance: " + str(available))
         print("Available GH/S: " + str(myGH))
         mod = Decimal(threshold) + Decimal(.00001)
         if myGH <= 5:
@@ -345,18 +348,18 @@ def attemptOrder(api,couple,orderType,last):
             print("My GHS: " + str(myGH) + " <= 5")
             if gh > 0.0001:
                 wasSuccess = callAPI(api.place_order(orderType, gh, last, currency))
-                print("Order of " + str(gh) + " GH/s at " + str(last) + " GH/BTC Total: " + str(gh*last) +" Success: " + str(wasSuccess))
+                print(Fore.GREEN+"Order of " + str(gh) + " GHS at " + str(last) + " GH/BTC Total: " + str(gh*last) +" Success: " + str(wasSuccess))
             else:
-                print("No order placed, can't purchase GH/s less than threshold ("+str(threshold)+").")
+                print(Fore.RED+"No order placed, can't purchase GHS less than threshold ("+str(threshold)+").")
         else:
             gh = round(Decimal((available-mod)/last),5)
             print("Possible purchase " + str(gh) + " ghs")
             gh = math.floor(gh)
             if gh >= 1:
                 wasSuccess = callAPI(api.place_order('buy', gh, last, currency))
-                print("Order of " + str(gh) + " GH/s at " + str(last) + " GH/BTC Total: " + str(gh*last) +" Success: " + str(wasSuccess))
+                print(Fore.GREEN+"Order of " + str(gh) + " GH/s at " + str(last) + " GH/BTC Total: " + str(gh*last) +" Success: " + str(wasSuccess))
             elif gh < 1:
-                print("No order placed, gh purchase total didn't meet threshhold of 1 GH/S")
+                print(Fore.RED+"No order placed, GHS purchase total didn't meet threshhold of 1 GHS")
 ## End attemptOrder call
 
 #Begin program
