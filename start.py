@@ -318,45 +318,47 @@ def reinvest(name, key, secret, currency, investments):
 def attemptOrder(api,couple,orderType,last):
     balance = callAPI(api.balance())
     cs = couple.split("/")
-    threshold = .0001
+    threshold = round(Decimal(0.00000001),8)
     if orderType == 'sell':
         switch = [1,0]
     elif orderType == 'buy':
         switch = [0,1]
-    available = round(Decimal(balance[cs[switch[1]]]["available"]),6)
+    available = round(Decimal(balance[cs[switch[1]]]["available"]),8)
+    mod = threshold + Decimal(0.000000001)#threshold plus 1 decimal place
     if cs[0] != "GHS":
-        print("Available "+cs[switch[1]]+" Balance: " + str(available))
-        mod = Decimal(threshold) + Decimal(.00001)
+        print("Available "+cs[switch[1]]+" Balance: " + "{number:.{digits}f}".format(number=available, digits=8))#str(available))
         if orderType == 'buy':
-            order = round(Decimal((available-mod)/last),4)
+            order = round(Decimal((available-mod)/last),8)
         elif orderType == 'sell':
-            order = round(Decimal((available-mod) * last),4)
-        if order > 0.0001:
+            order = round(Decimal((available-mod)),8)
+        if order > threshold:
             wasSuccess = callAPI(api.place_order(orderType, order, last, couple))
-            print(Fore.GREEN+"Order of " + str(order) + " " + cs[switch[0]] +" at " + str(last) + " " + couple + " Total: " + str(order*last) +" Success: " + str(wasSuccess))
+            #checking cs[switch[1]]
+            print(Fore.GREEN+orderType+" of " + "{number:.{digits}f}".format(number=order, digits=8) + " " + cs[0] +" at " + "{number:.{digits}f}".format(number=last, digits=8) + " " + cs[1] + " Total: " + "{number:.{digits}f}".format(number=(order*last), digits=8) +" Success: " + str(wasSuccess))
         else:
-            print(Fore.RED+"No order placed, can't trade less than threshold ("+str(threshold)+").")
+            print(Fore.RED+"No order placed, can't trade less than threshold ("+"{number:.{digits}f}".format(number=threshold, digits=8)+").")
     elif cs[0] == "GHS" or cs[0] == "FHM":
-        myGH = round(Decimal(balance[cs[switch[0]]]["available"]),6)
-        print("Available "+cs[switch[1]]+" Balance: " + str(available))
-        print("Available GH/S: " + str(myGH))
-        mod = Decimal(threshold) + Decimal(.00001)
+        myGH = round(Decimal(balance[cs[switch[0]]]["available"]),8)
+        print("Available "+cs[switch[1]]+" Balance: " + "{number:.{digits}f}".format(number=available, digits=8))
+        print("Available GH/S: " + "{number:.{digits}f}".format(number=myGHS, digits=8))
         if myGH <= 5:
-            gh = round(Decimal((available-mod)/last),4)
-            print("Possible purchase " + str(gh) + " ghs")
-            print("My GHS: " + str(myGH) + " <= 5")
-            if gh > 0.0001:
+            gh = round(Decimal((available-mod)/last),8)
+            print("Possible purchase " + "{number:.{digits}f}".format(number=gh, digits=8) + " ghs")
+            print("My GHS: " + "{number:.{digits}f}".format(number=myGHS, digits=8) + " <= 5")
+            if gh > threshold:
                 wasSuccess = callAPI(api.place_order(orderType, gh, last, currency))
-                print(Fore.GREEN+"Order of " + str(gh) + " GHS at " + str(last) + " GH/BTC Total: " + str(gh*last) +" Success: " + str(wasSuccess))
+                total = round(Decimal(gh*last), 8)
+                print(Fore.GREEN+orderType+" of " + "{number:.{digits}f}".format(number=gh, digits=8) + " GHS at " + "{number:.{digits}f}".format(number=last, digits=8) + " " + couple + " Total: " + "{number:.{digits}f}".format(number=total, digits=8) +" Success: " + str(wasSuccess))
             else:
-                print(Fore.RED+"No order placed, can't purchase GHS less than threshold ("+str(threshold)+").")
+                print(Fore.RED+"No order placed, can't purchase GHS less than threshold ("+"{number:.{digits}f}".format(number=threshold, digits=8)+").")
         else:
             gh = round(Decimal((available-mod)/last),5)
             print("Possible purchase " + str(gh) + " ghs")
             gh = math.floor(gh)
             if gh >= 1:
                 wasSuccess = callAPI(api.place_order('buy', gh, last, currency))
-                print(Fore.GREEN+"Order of " + str(gh) + " GH/s at " + str(last) + " GH/BTC Total: " + str(gh*last) +" Success: " + str(wasSuccess))
+                total = round(Decimal(gh*last))
+                print(Fore.GREEN+"Order of " + str(gh) + " GH/s at " + str(last) + " " + cs[1] + " Total: " + str(total) +" Success: " + str(wasSuccess))
             elif gh < 1:
                 print(Fore.RED+"No order placed, GHS purchase total didn't meet threshhold of 1 GHS")
 ## End attemptOrder call

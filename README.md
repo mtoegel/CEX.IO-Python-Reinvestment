@@ -45,7 +45,7 @@ If you want to run it via a cron you can remove the "while True:" line and remov
 	* The limits and basic functionality from the old version are still relevant so it's worth reading through the old instructions.  
 	* However, the FHM/BTC is just an option of labeling the currency in step 3 to FHM, but it doesn't do the date checking yet like it does in the old version.  
   
-## **To-DO:**  
+## **To-Do:**  
  - [ ] Optimize and cleanup the structure and code  
  - [ ] Add other error checks, prevent errors from breaking code loop  
  - [ ] Test it on Raspberry Pi  
