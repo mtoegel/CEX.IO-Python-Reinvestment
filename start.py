@@ -340,13 +340,13 @@ def attemptOrder(api,couple,orderType,last):
     elif cs[0] == "GHS" or cs[0] == "FHM":
         myGH = round(Decimal(balance[cs[switch[0]]]["available"]),8)
         print("Available "+cs[switch[1]]+" Balance: " + "{number:.{digits}f}".format(number=available, digits=8))
-        print("Available GH/S: " + "{number:.{digits}f}".format(number=myGHS, digits=8))
+        print("Available GH/S: " + "{number:.{digits}f}".format(number=myGH, digits=8))
         if myGH <= 5:
             gh = round(Decimal((available-mod)/last),8)
             print("Possible purchase " + "{number:.{digits}f}".format(number=gh, digits=8) + " ghs")
-            print("My GHS: " + "{number:.{digits}f}".format(number=myGHS, digits=8) + " <= 5")
+            print("My GHS: " + "{number:.{digits}f}".format(number=myGH, digits=8) + " <= 5")
             if gh > threshold:
-                wasSuccess = callAPI(api.place_order(orderType, gh, last, currency))
+                wasSuccess = callAPI(api.place_order(orderType, gh, last, couple))
                 total = round(Decimal(gh*last), 8)
                 print(Fore.GREEN+orderType+" of " + "{number:.{digits}f}".format(number=gh, digits=8) + " GHS at " + "{number:.{digits}f}".format(number=last, digits=8) + " " + couple + " Total: " + "{number:.{digits}f}".format(number=total, digits=8) +" Success: " + str(wasSuccess))
             else:
