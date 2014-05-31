@@ -356,7 +356,7 @@ def attemptOrder(api,couple,orderType,last):
             print("Possible purchase " + str(gh) + " ghs")
             gh = math.floor(gh)
             if gh >= 1:
-                wasSuccess = callAPI(api.place_order('buy', gh, last, currency))
+                wasSuccess = callAPI(api.place_order('buy', gh, last, couple))
                 total = round(Decimal(gh*last))
                 print(Fore.GREEN+"Order of " + str(gh) + " GH/s at " + str(last) + " " + cs[1] + " Total: " + str(total) +" Success: " + str(wasSuccess))
             elif gh < 1:
