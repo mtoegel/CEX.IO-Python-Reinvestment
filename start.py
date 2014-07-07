@@ -324,7 +324,8 @@ def attemptOrder(api,couple,orderType,last):
     elif orderType == 'buy':
         switch = [0,1]
     available = round(Decimal(balance[cs[switch[1]]]["available"]),8)
-    mod = threshold + Decimal(0.000000001) + Decimal(0.00000072)#threshold plus 1 decimal place - added fee of 0.00000072 5/27
+    mod = threshold + Decimal(0.000000001) + Decimal(available*Decimal(0.2))#threshold plus 1 decimal place - added fee of 0.00000072 5/27
+                                                                #updated fee to 2% 7/7/14
     if cs[0] != "GHS":
         print("Available "+cs[switch[1]]+" Balance: " + "{number:.{digits}f}".format(number=available, digits=8))#str(available))
         if orderType == 'buy':
